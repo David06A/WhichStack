@@ -1,0 +1,49 @@
+#CACHE
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# #DIST
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+
+# INSTALL_LOGS
+pip-log.txt
+pip-delete-this-directory.txt
+
+# FLASK:
+instance/
+.webassets-cache
+
+# SPHINX
+docs/_build/
+
+# PYENVS
+.python-version
+
+
+# ENVS
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
