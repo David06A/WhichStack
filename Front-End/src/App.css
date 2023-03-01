@@ -1,12 +1,30 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  flex: 1
+}
+
+:root {
+  --background: #f2f2f2;
+  --text-primary: #26648E;
+  --text-secondary: #4F8FC0;
+  --accent: #53D2DC;
+  --accent-hover: #FFE3B3; 
+  --border: #4F8FC0;
+  --shadow: 7px 15px 13px -14px #00000056;
+}
+
+[data-theme='dark'] {
+  --background: #2b3950;
+  --text-primary: #f2f2f2;
+  --text-secondary: #a7a4a4;
+  --accent: #984063;
+  --accent-hover: #f64668; 
+  --border: #FE9677;
+  --shadow: 7px 15px 13px -4px #ffffff1b;
 }
 
 .logo {
-  height: 6em;
+  height: 3em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
@@ -27,6 +45,73 @@
   }
 }
 
+.App {
+  flex: 1;
+  background-color: var(--background);
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--accent-hover);
+  transition: .7s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--accent-hover);
+  transition: .7s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--accent);
+}
+
+input:not(:checked) + .slider {
+  background-color: var(--border);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--shadow);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
@@ -39,4 +124,43 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2em;
+  border-bottom: 1px solid var(--border);
+}
+
+.header h1 {
+  font-size: 1.5em;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.header a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  transition: background-color 0.25s;
+}
+
+.header a:hover {
+  background-color: var(--accent-hover);
+}
+
+.header a:active {
+  background-color: var(--accent);
+}
+
+.align-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
