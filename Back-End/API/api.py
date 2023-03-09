@@ -63,19 +63,18 @@ async def query(request: Request, response: Response):
             media_type="application/json"
         )
 
-    except Exception:
-        if isinstance(Exception, json.decoder.JSONDecodeError):
+    except Exception as error:
+        if isinstance(error, json.decoder.JSONDecodeError):
             return Response(
                 status_code = 406,
                 content="Request body could not be deocded, it must be JSON"
             )
         else:
+            logging.error(traceback.format_exc())
             return Response(
                 status_code = 500,
                 content="Internal Server Error"
             )
-            
-            logging.error(traceback.format_exc())
 
 
 if __name__ == '__main__':
