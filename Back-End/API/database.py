@@ -45,4 +45,4 @@ class Client:
         collection = await self.load_collection(stack_type)
         document = await collection.find_one({"stack_name": stack_name}) # `Finds` the document using the stack name #
 
-        return document
+        return document, collection
