@@ -9,15 +9,16 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
 import uvicorn
+import aiohttp
+
+import json
+import logging
+import traceback
+import asyncio
+import traceback
 
 from handler import Handler 
 
-import json
-import traceback
-import logging
-
-import aiohttp
-import asyncio
 
 
 # Setup #
