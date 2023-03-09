@@ -79,4 +79,4 @@ async def query(request: Request, response: Response):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=9000, host='0.0.0.0') # Hosts the API, binding to localhost # 
+    uvicorn.run(app, port=42069, host='0.0.0.0') # Hosts the API, binding to localhost # 
