@@ -9,15 +9,15 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
 import uvicorn
-
-from handler import Handler 
+import aiohttp
 
 import json
-import traceback
 import logging
-
-import aiohttp
+import traceback
 import asyncio
+import traceback
+
+from handler import Handler 
 
 
 # Setup #
@@ -38,29 +38,44 @@ handler = Handler() # Utilities for the API #
 async def query(request: Request, response: Response):
     try:
         logging.info(await request.json())
-    except json.decoder.JSONDecodeError:
-        logging.error("Request body could not be decoded")
-        return "Error 400: Request Body Error"
 
-    result = await handler.retreive_response("prompt_here")
+        result = await handler.retreive_response("prompt_here")
 
-    all_stacks = {} # All the stacks to be sent back to the client #    
+        all_stacks = {} # All the stacks to be sent back to the client #    
 
-    for stack in result["stacks"]: # In case there are multiple stacks #
-        stack_type = result["stacks"][stack]["stack_type"]
-        stack_name = result["stacks"][stack]["stack_name"]
+        for stack in result["stacks"]: # In case there are multiple stacks #
+            stack_type = result["stacks"][stack]["stack_type"]
+            stack_name = result["stacks"][stack]["stack_name"]
+            logging.info(result)
 
-        stack_info = await handler.get_stack_info(stack_type, stack_type)
-        all_stacks[stack_name] = stack_info 
+            stack_info = await handler.get_stack_info(stack_type, stack_name)
+            all_stacks[stack_name] = stack_info 
 
-        await handler.inc_suggested_counter(stack_type, stack_name)
+            await handler.inc_suggested_counter(stack_type, stack_name)
 
-    return_json = {
-        "stacks": all_stacks
-    }
+        return_stacks = {
+            "stacks": all_stacks
+        }
 
-    return JSONResponse(status_code = 200, content=return_json, media_type="application/json")
+        return JSONResponse(
+            status_code = 200,
+            content=return_stacks,
+            media_type="application/json"
+        )
+
+    except Exception as error:
+        if isinstance(error, json.decoder.JSONDecodeError):
+            return Response(
+                status_code = 406,
+                content="Request body could not be deocded, it must be JSON"
+            )
+        else:
+            logging.error(traceback.format_exc())
+            return Response(
+                status_code = 500,
+                content="Internal Server Error"
+            )
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=9000, host='0.0.0.0') # Hosts the API, binding to localhost # 
+    uvicorn.run(app, port=42069, host='0.0.0.0') # Hosts the API, binding to localhost # 

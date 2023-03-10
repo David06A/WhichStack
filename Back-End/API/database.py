@@ -43,6 +43,6 @@ class Client:
 
     async def load_document(self, stack_type: int, stack_name: str):
         collection = await self.load_collection(stack_type)
-        document = await collection.find_one({"_id": stack_name}) # `Finds` the document using the stack name #
+        document = await collection.find_one({"stack_name": stack_name}) # `Finds` the document using the stack name #
 
         return document
