@@ -33,9 +33,9 @@ handler = Handler() # Utilities for the API #
 #app.add_middleware(HTTPSRedirectMiddleware) # Optional/recommended SSL Cert #
 
 
-@app.post("/query")
+@app.post("/stack/chooser")
 #@limiter.limit("2/minute")
-async def query(request: Request, response: Response):
+async def stack_chooser(request: Request, response: Response):
     try:
         logging.info(await request.json())
 
@@ -51,7 +51,7 @@ async def query(request: Request, response: Response):
             stack_info = await handler.get_stack_info(stack_type, stack_name)
             all_stacks[stack_name] = stack_info 
 
-            await handler.inc_suggested_counter(stack_type, stack_name)
+            await handler.inc_stack_count(stack_type, stack_name)
 
         return_stacks = {
             "stacks": all_stacks
