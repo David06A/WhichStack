@@ -1,5 +1,5 @@
 # RESTful Request Library Of Choice #
-from fastapi import FastAPI, Form, Request, Response, Depends, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
 from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
@@ -18,6 +18,11 @@ import asyncio
 import traceback
 
 from handler import Handler 
+from exceptions import (
+    MissingArguments,
+    RequestValidationError,
+    InternalServerError
+)
 
 
 # Setup #
@@ -40,13 +45,7 @@ async def stack_chooser(request: Request, response: Response):
         req = await request.json()
 
         if not all(k in req for k in ("Q1","Q2")):
-            return JSONResponse(
-                content = {
-                    "status_code": 400,
-                    "error_message": "Bad Request",
-                    "error_details": "The request body was missing required parameters"
-                }
-            )
+            return MissingArguments()
 
         result = await handler.retreive_response("prompt_here")
 
@@ -75,21 +74,10 @@ async def stack_chooser(request: Request, response: Response):
 
     except Exception as error:
         if isinstance(error, json.decoder.JSONDecodeError):
-            return JSONResponse(
-                content = {
-                    "status_code": 406,
-                    "error_message": "Not Acceptable",
-                    "error_details": "The request body was not a valid JSON string"
-                }
-            )
+            RequestValidationError()
         else:
             logging.error(traceback.format_exc())
-            return JSONResponse(
-                content = {
-                    "status_code": 500,
-                    "error_message": "Internal Server Error"
-                }
-            )
+            return InternalServerError()
 
 
 if __name__ == '__main__':
