@@ -56,6 +56,20 @@
   overflow: hidden;
 }
 
+.page-container {
+  opacity: 1;
+  display: flex;
+  transition: opacity 1.8s ease-in-out;
+}
+
+.page-container.hidden {
+  opacity: 0;
+  display: flex;
+  position: absolute;
+  transition: opacity .7s ease-in-out;
+}
+
+
 
 .toggle {
   position: relative;
@@ -82,6 +96,9 @@
   border-radius: 34px;
 }
 
+.homebtn {
+  cursor: pointer
+}
 .slider:before {
   position: absolute;
   content: "";
@@ -184,6 +201,11 @@ h2 {
 
 h3 {
   font-size: 1.17em;
+  color: var(--text-primary);
+}
+
+h4 {
+  font-size: 1em;
   color: var(--text-primary);
 }
 

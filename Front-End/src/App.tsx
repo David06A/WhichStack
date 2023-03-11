@@ -3,10 +3,15 @@ import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { ThemeToggleButton } from "./components/ThemeToggleButton";
 import { HomePage } from "./pages/home-page/HomePage";
+import QuestionPage from "./pages/questions-page/QuestionPage";
 
 function App() {
     const [isLightMode, setIsLightMode] = useState(false);
+    const [currentPage, setCurrentPage] = useState("home");
 
+    const updatePage = (page: string) => {
+        setCurrentPage(page);
+    };
     return (
         <div className="App" data-theme={!isLightMode ? "dark" : "light"}>
             <div>
@@ -16,7 +21,9 @@ function App() {
                 <div id="title"></div>
             </div>
             <div className="header">
-                <div className="align-row">
+                <div
+                    className="align-row homebtn"
+                    onClick={() => updatePage("home")}>
                     <img src={reactLogo} className="logo" alt="logo" />
                     <h1>WhichStack?</h1>
                 </div>
@@ -28,8 +35,18 @@ function App() {
                 </div>
             </div>
             <div className="card">
-                {/*pages*/}
-                <HomePage />
+                <div
+                    className={`page-container ${
+                        currentPage !== "home" && "hidden"
+                    }`}>
+                    <HomePage nextPage={updatePage} />
+                </div>
+                <div
+                    className={`page-container ${
+                        currentPage !== "question" && "hidden"
+                    }`}>
+                    <QuestionPage nextPage={updatePage} />
+                </div>
             </div>
         </div>
     );

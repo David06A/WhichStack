@@ -2,14 +2,16 @@ import { useState } from "react";
 import { PopularStacks, Stack } from "../../assets/PopularStacks";
 import "./HomePage.css";
 
-type HomePageProps = {};
+type HomePageProps = {
+    nextPage: Function;
+};
 
-export const HomePage = ({}: HomePageProps) => {
+export const HomePage = ({ nextPage }: HomePageProps) => {
     const [stacks, setStacks] = useState<Stack[]>(PopularStacks);
     return (
         <div className="container">
             <h1>Find your perfect tech stack in 60 seconds...</h1>
-            <GoButton />
+            <GoButton onClick={nextPage} />
             <br />
             <hr />
             <h3>Popular Tech Stacks</h3>
@@ -22,9 +24,12 @@ export const HomePage = ({}: HomePageProps) => {
     );
 };
 
-const GoButton = () => {
+const GoButton = ({ onClick }: any) => {
     return (
-        <button className="button-81" role="button">
+        <button
+            className="button-81"
+            role="button"
+            onClick={() => onClick("question")}>
             Get Started
         </button>
     );
