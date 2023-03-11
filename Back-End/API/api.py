@@ -37,7 +37,16 @@ handler = Handler() # Utilities for the API #
 #@limiter.limit("2/minute")
 async def stack_chooser(request: Request, response: Response):
     try:
-        logging.info(await request.json())
+        req = await request.json()
+
+        if not all(k in req for k in ("Q1","Q2")):
+            return JSONResponse(
+                content = {
+                    "status_code": 400,
+                    "error_message": "Bad Request",
+                    "error_details": "The request body was missing required parameters"
+                }
+            )
 
         result = await handler.retreive_response("prompt_here")
 
@@ -58,22 +67,28 @@ async def stack_chooser(request: Request, response: Response):
         }
 
         return JSONResponse(
-            status_code = 200,
-            content=return_stacks,
-            media_type="application/json"
+            content = {
+                "status_code": 200,
+                "content" : return_stacks
+            }
         )
 
     except Exception as error:
         if isinstance(error, json.decoder.JSONDecodeError):
-            return Response(
-                status_code = 406,
-                content="Request body could not be deocded, it must be JSON"
+            return JSONResponse(
+                content = {
+                    "status_code": 406,
+                    "error_message": "Not Acceptable",
+                    "error_details": "The request body was not a valid JSON string"
+                }
             )
         else:
             logging.error(traceback.format_exc())
-            return Response(
-                status_code = 500,
-                content="Internal Server Error"
+            return JSONResponse(
+                content = {
+                    "status_code": 500,
+                    "error_message": "Internal Server Error"
+                }
             )
 
 

@@ -30,7 +30,6 @@ class Handler:
 
     async def get_stack_info(self, stack_type: int, stack_name: str):
         document, _ = await self.database.load_document(stack_type, stack_name)
-        logging.info(document, stack_type, stack_name)
 
         stack_info = {
             "stack_name": document["stack_name"],
