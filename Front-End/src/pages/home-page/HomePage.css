@@ -134,6 +134,18 @@ hr {
   touch-action: manipulation;
 }
 
+.button-81:active {
+  transform: scale(.95);
+  transition: transform .2s ease-out;
+}
+
+.button-81:disabled {
+  background-color: var(--background-secondary);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 .button-81:hover {
   color: var(--text-secondary);
   transform: scale(1.05);
