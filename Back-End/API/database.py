@@ -1,12 +1,10 @@
 import json
 import logging
-
 import asyncio
+
 import aiohttp
 
-import motor.motor_asyncio as motor # Python driver for MongoDB #
-
-# This will require the server edition of MongoDB #
+import motor.motor_asyncio as motor 
 
 
 logging.basicConfig(level=logging.DEBUG)

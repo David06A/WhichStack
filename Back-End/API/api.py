@@ -1,9 +1,7 @@
-# RESTful Request Library Of Choice #
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
 from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
-# Ratelimit Handler For FastAPI #
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -33,7 +31,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 logging.basicConfig(level=logging.DEBUG)
 
-handler = Handler() # Utilities for the API #
+handler = Handler()
 
 #app.add_middleware(HTTPSRedirectMiddleware) # Optional/recommended SSL Cert #
 
@@ -67,7 +65,8 @@ async def stack_chooser(request: Request, response: Response):
 
         return JSONResponse(
             content = {
-                "status_code": 200,
+                "status": 200,
+                "type": "success",
                 "content" : return_stacks
             }
         )
@@ -81,4 +80,4 @@ async def stack_chooser(request: Request, response: Response):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=42069, host='0.0.0.0') # Hosts the API, binding to localhost # 
+    uvicorn.run(app, port=42069, host='0.0.0.0')
