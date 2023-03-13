@@ -1,12 +1,10 @@
 import json
 import logging
-
 import asyncio
+
 import aiohttp
 
-import motor.motor_asyncio as motor # Python driver for MongoDB #
-
-# This will require the server edition of MongoDB #
+import motor.motor_asyncio as motor 
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -45,4 +43,4 @@ class Client:
         collection = await self.load_collection(stack_type)
         document = await collection.find_one({"stack_name": stack_name}) # `Finds` the document using the stack name #
 
-        return document
+        return document, collection

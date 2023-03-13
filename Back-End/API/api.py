@@ -1,9 +1,7 @@
-# RESTful Request Library Of Choice #
-from fastapi import FastAPI, Form, Request, Response, Depends, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
 from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
-# Ratelimit Handler For FastAPI #
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -18,6 +16,11 @@ import asyncio
 import traceback
 
 from handler import Handler 
+from exceptions import (
+    MissingArguments,
+    RequestValidationError,
+    InternalServerError
+)
 
 
 # Setup #
@@ -28,16 +31,19 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 logging.basicConfig(level=logging.DEBUG)
 
-handler = Handler() # Utilities for the API #
+handler = Handler()
 
 #app.add_middleware(HTTPSRedirectMiddleware) # Optional/recommended SSL Cert #
 
 
-@app.post("/query")
+@app.post("/stack/chooser")
 #@limiter.limit("2/minute")
-async def query(request: Request, response: Response):
+async def stack_chooser(request: Request, response: Response):
     try:
-        logging.info(await request.json())
+        req = await request.json()
+
+        if not all(k in req for k in ("Q1","Q2")):
+            return MissingArguments()
 
         result = await handler.retreive_response("prompt_here")
 
@@ -51,31 +57,27 @@ async def query(request: Request, response: Response):
             stack_info = await handler.get_stack_info(stack_type, stack_name)
             all_stacks[stack_name] = stack_info 
 
-            await handler.inc_suggested_counter(stack_type, stack_name)
+            await handler.inc_stack_count(stack_type, stack_name)
 
         return_stacks = {
             "stacks": all_stacks
         }
 
         return JSONResponse(
-            status_code = 200,
-            content=return_stacks,
-            media_type="application/json"
+            content = {
+                "status": 200,
+                "type": "success",
+                "content" : return_stacks
+            }
         )
 
     except Exception as error:
         if isinstance(error, json.decoder.JSONDecodeError):
-            return Response(
-                status_code = 406,
-                content="Request body could not be deocded, it must be JSON"
-            )
+            RequestValidationError()
         else:
             logging.error(traceback.format_exc())
-            return Response(
-                status_code = 500,
-                content="Internal Server Error"
-            )
+            return InternalServerError()
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=42069, host='0.0.0.0') # Hosts the API, binding to localhost # 
+    uvicorn.run(app, port=42069, host='0.0.0.0')
