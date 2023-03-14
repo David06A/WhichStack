@@ -1,8 +1,8 @@
-class MissingArguments():
+class InvalidPrompt():
     def __init__(self):
         self.status = 400,
-        self.type = "Missing Arguments",
-        self.details = "There are missing items in the request body"
+        self.type = "Invalid Prompt",
+        self.details = "The prompt body was missing required parameters"
 
 class RequestValidationError():
     def __init__(self):
