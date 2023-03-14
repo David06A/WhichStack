@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Response
+from fastapi import FastAPI, Request, Response, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
@@ -16,11 +16,6 @@ import asyncio
 import traceback
 
 from handler import Handler 
-from exceptions import (
-    MissingArguments,
-    RequestValidationError,
-    InternalServerError
-)
 
 
 # Setup #
@@ -42,11 +37,10 @@ async def stack_chooser(request: Request, response: Response):
     try:
         req = await request.json()
 
-        if not all(k in req for k in ("Q1","Q2")):
-            return MissingArguments()
+        result = await handler.retreive_response(req["prompt"])
 
-        result = await handler.retreive_response("prompt_here")
-
+        if not result:
+            raise HTTPException(status_code=400, detail="The prompt was invalid")
         all_stacks = {} # All the stacks to be sent back to the client #    
 
         for stack in result["stacks"]: # In case there are multiple stacks #
@@ -73,10 +67,11 @@ async def stack_chooser(request: Request, response: Response):
 
     except Exception as error:
         if isinstance(error, json.decoder.JSONDecodeError):
-            RequestValidationError()
+            raise HTTPException(status_code=406, detail="The request body was not a valid JSON string")
         else:
             logging.error(traceback.format_exc())
-            return InternalServerError()
+            raise HTTPException(status_code=500, detail="The server is unable to handle your request at this time")
+
 
 
 if __name__ == '__main__':
