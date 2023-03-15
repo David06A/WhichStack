@@ -28,19 +28,18 @@ logging.basicConfig(level=logging.DEBUG)
 
 handler = Handler()
 
-#app.add_middleware(HTTPSRedirectMiddleware) # Optional/recommended SSL Cert #
-
-
 @app.post("/stack/chooser")
 #@limiter.limit("2/minute")
 async def stack_chooser(request: Request, response: Response):
     try:
         req = await request.json()
 
-        result = await handler.retreive_response(req["prompt"])
+        result = await handler.retreive_response(req["user_context"])
 
         if not result:
-            raise HTTPException(status_code=400, detail="The prompt was invalid")
+            return HTTPException(status_code=400, detail="The prompt was invalid")
+
+        return "bob"
         all_stacks = {} # All the stacks to be sent back to the client #    
 
         for stack in result["stacks"]: # In case there are multiple stacks #
