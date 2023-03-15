@@ -18,59 +18,55 @@ import traceback
 from handler import Handler 
 
 
-# Setup #
 limiter = Limiter(key_func=get_remote_address)
 app = FastAPI(redoc_url=None, docs_url=None) #
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 handler = Handler()
 
 @app.post("/stack/chooser")
-#@limiter.limit("2/minute")
+@limiter.limit("2/minute")
 async def stack_chooser(request: Request, response: Response):
     try:
         req = await request.json()
 
-        result = await handler.retreive_response(req["user_context"])
+        if not isinstance(req, dict):
+            return JSONResponse(
+                content = {
+                    "status": 406,
+                    "error" : "The request body was not a valid JSON string"
+                }
+            )
 
-        if not result:
-            return HTTPException(status_code=400, detail="The prompt was invalid")
+        valid_ctx = await handler.validate_context(req["user_context"])
+            
+        if valid_ctx is False:
+            return JSONResponse(
+                content = {
+                    "status": 400,
+                    "error" : "The request body is missing required elements"
+                }
+            )
 
-        return "bob"
-        all_stacks = {} # All the stacks to be sent back to the client #    
+        result = await handler.retreive_response(valid_ctx)
 
-        for stack in result["stacks"]: # In case there are multiple stacks #
-            stack_type = result["stacks"][stack]["stack_type"]
-            stack_name = result["stacks"][stack]["stack_name"]
-            logging.info(result)
-
-            stack_info = await handler.get_stack_info(stack_type, stack_name)
-            all_stacks[stack_name] = stack_info 
-
-            await handler.inc_stack_count(stack_type, stack_name)
-
-        return_stacks = {
-            "stacks": all_stacks
-        }
+        if result is None:
+            return HTTPException(status_code=500, detail="The server is unable to handle your request at this time")
 
         return JSONResponse(
             content = {
                 "status": 200,
                 "type": "success",
-                "content" : return_stacks
+                "response" : result["choices"][0]["message"]["content"]
             }
         )
 
     except Exception as error:
-        if isinstance(error, json.decoder.JSONDecodeError):
-            raise HTTPException(status_code=406, detail="The request body was not a valid JSON string")
-        else:
-            logging.error(traceback.format_exc())
-            raise HTTPException(status_code=500, detail="The server is unable to handle your request at this time")
-
+        logging.error(traceback.format_exc())
+        return HTTPException(status_code=500, detail="The server is unable to handle your request at this time")
 
 
 if __name__ == '__main__':

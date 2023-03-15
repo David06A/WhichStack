@@ -7,7 +7,7 @@ import aiohttp
 import motor.motor_asyncio as motor 
 
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 class Client:
     def __init__(self):
