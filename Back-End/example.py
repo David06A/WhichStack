@@ -1,7 +1,7 @@
 import asyncio
 import json
 
-import asyncio
+import aiohttp
 
 async def example():
     async with aiohttp.ClientSession() as session:
