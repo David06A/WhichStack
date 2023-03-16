@@ -7,20 +7,20 @@ import aiohttp
 import motor.motor_asyncio as motor 
 
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 class Client:
     def __init__(self):
-        self.database = motor.AsyncIOMotorClient('127.0.0.1', 27017) # Creates the Mongo client #
+        self.database = motor.AsyncIOMotorClient('127.0.0.1', 27017)
         logging.info(f"Created client:\n{self.database}")
 
-    def setup_db(self): # Run this when creating the project #
+    def setup_db(self):
         db = self.database["stack_db"]
         collection = db["full_stack"]
 
         setup_dict = {
             "_id": "react-native",
-            "suggested_count": 0, # Number of times this stack has been output #
+            "suggested_count": 0,
             "short_description": "React Native is a framework etcetc"
         }
 
@@ -41,6 +41,6 @@ class Client:
 
     async def load_document(self, stack_type: int, stack_name: str):
         collection = await self.load_collection(stack_type)
-        document = await collection.find_one({"stack_name": stack_name}) # `Finds` the document using the stack name #
+        document = await collection.find_one({"stack_name": stack_name})
 
         return document, collection
