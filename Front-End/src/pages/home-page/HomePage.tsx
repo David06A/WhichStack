@@ -8,16 +8,9 @@ type HomePageProps = {
 
 export const HomePage = ({ nextPage }: HomePageProps) => {
     const [stacks, setStacks] = useState<Stack[]>(PopularStacks);
-    const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
     const [screenHeight, setScreenHeight] = useState<number>(
         window.innerHeight
     );
-    useEffect(() => {
-        const handleResize = () => setScreenWidth(window.innerWidth);
-        window.addEventListener("resize", handleResize);
-        // if (screenWidth < 600) setStacks(PopularStacks.slice(0, 2));
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
     return (
         <div className="container">
@@ -28,7 +21,7 @@ export const HomePage = ({ nextPage }: HomePageProps) => {
             <h3>Popular Tech Stacks</h3>
             <div
                 className="stack-container"
-                style={{ maxHeight: screenHeight / 2 }}>
+                style={{ maxHeight: screenHeight / 2.5 }}>
                 {stacks.map((stack) => (
                     <TechStackCard stack={stack} />
                 ))}

@@ -23,6 +23,9 @@ const QuestionPage = ({ nextPage }: any) => {
     const [questions, setQuestions] = useState<Question[]>(
         ProjectCreationQuestions
     );
+    const [screenHeight, setScreenHeight] = useState<number>(
+        window.innerHeight
+    );
 
     const savedAnswers = [];
     const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -46,10 +49,9 @@ const QuestionPage = ({ nextPage }: any) => {
 
     return (
         <div className="container">
-            <h1>Question Page</h1>
-            <br />
-            <hr />
-            <div className="question-container">
+            <div
+                className="question-container"
+                style={{ maxHeight: screenHeight / 1.5 }}>
                 <QuestionCard
                     question={questionRef}
                     onAnswerClick={handleAnswerClick}
