@@ -1,167 +1,166 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 60%;
-  margin: auto;
-  padding: 15px;
-  border-radius: 30px;
-  background-color: var(--background-secondary);
-  z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+    padding: 15px;
+    border-radius: 30px;
+    background-color: var(--background-secondary);
+    z-index: 3;
 }
 
 :root {
-  --text-color: rgb(255, 255, 255);
-  --shadow-color: hsla(210, 40%, 52%, .4);
-  --btn-color: hsl(210, 80%, 42%);
-  --bg-color: #141218;
+    --text-color: rgb(255, 255, 255);
+    --shadow-color: hsla(210, 40%, 52%, 0.4);
+    --btn-color: hsl(210, 80%, 42%);
+    --bg-color: #141218;
 }
 
 hr {
-  width: 100%;
-  height: 1px;
-  margin-bottom: -10px;
-  border: 0;
-  background-color: var(--border);
+    width: 100%;
+    height: 1px;
+    margin-bottom: -10px;
+    border: 0;
+    background-color: var(--border);
 }
 
 .techstack-card {
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 150px;
-  min-height: 180px;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 20px;
-  background-color: var(--background-secondary);
-  border: 3px solid var(--border);
-  transition: transform .4s ease-out;
-  
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    min-height: 180px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: var(--background-secondary);
+    border: 3px solid var(--border);
+    transition: transform 0.4s ease-out;
 }
 
 .techstack-card:hover {
-  box-shadow: var(--bubbles) 2px 2px 12px;
-  transform: scale(1.5);
-  transition: transform .4s ease-out;
-  z-index: 5;
+    box-shadow: var(--bubbles) 2px 2px 12px;
+    transform: scale(1.5);
+    transition: transform 0.4s ease-out;
+    z-index: 5;
 }
 
-
-
 .techstack-card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  transition: transform .4s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease-out;
 }
 
 .techstack-card-content img {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .techstack-card-content p {
-  margin: 0;
-  font-size: 1.2em;
-  font-weight: 900;
-  color: var(--text-color);
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 900;
+    color: var(--text-color);
 }
 
 .techstack-card-content p:hover {
-  color: var(--btn-color);
-} 
+    color: var(--btn-color);
+}
 
 .stack-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-top: -30px;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: -30px;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
 }
 
 .go-button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height:  100px;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 20px;
-  background-color: var(--background-secondary);
-  border: 3px solid var(--border);
-  cursor: pointer;
-  z-index: 3;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: var(--background-secondary);
+    border: 3px solid var(--border);
+    cursor: pointer;
+    z-index: 3;
 }
 
 .go-button:hover {
-  box-shadow: var(--bubbles) 2px 2px 10px;
+    box-shadow: var(--bubbles) 2px 2px 10px;
 }
 
 /* CSS */
 .button-81 {
-  background-color: var(--background);
-  z-index: 3;
-  border: 0 solid #e2e8f0;
-  border-radius: 1.5rem;
-  box-sizing: border-box;
-  color: var(--text-primary);
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Basier circle",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1;
-  padding: 1.2rem 2rem;
-  text-align: center;
-  text-decoration-thickness: auto;
-  transition: all .1s cubic-bezier(.4, 0, .2, 1);
-  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+    background-color: var(--background);
+    z-index: 3;
+    border: 0 solid #e2e8f0;
+    border-radius: 1.5rem;
+    box-sizing: border-box;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 1.2rem 2rem;
+    text-align: center;
+    text-decoration-thickness: auto;
+    transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 .button-81:active {
-  transform: scale(.95);
-  transition: transform .2s ease-out;
+    transform: scale(0.95);
+    transition: transform 0.2s ease-out;
 }
 
 .button-81:disabled {
-  background-color: var(--background-secondary);
-  color: var(--text-secondary);
-  cursor: not-allowed;
-  box-shadow: none;
+    background-color: var(--background-secondary);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    box-shadow: none;
 }
 
 .button-81:hover {
-  color: var(--text-secondary);
-  transform: scale(1.05);
-  transition: transform .2s ease-out;
+    color: var(--text-secondary);
+    transform: scale(1.05);
+    transition: transform 0.2s ease-out;
 }
 
 @media (min-width: 768px) {
-  .button-81 {
-    font-size: 1.125rem;
-    padding: 1rem 2rem;
-  }
+    .button-81 {
+        font-size: 1.125rem;
+        padding: 1rem 2rem;
+    }
 }
 
 .stack-image {
-  width: 75px;
-  height: 55px;
-  object-fit: contain;
-  object-position: top;
+    width: 75px;
+    height: 55px;
+    object-fit: contain;
+    object-position: top;
 }
