@@ -40,7 +40,7 @@ const QuestionPage = ({ nextPage }: any) => {
         if (currentQuestion < questions.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
         } else {
-            nextPage("techStackPage"); //savedAnswers);
+            nextPage("recommendation"); //savedAnswers);
         }
     };
 
