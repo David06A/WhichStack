@@ -76,6 +76,18 @@ hr {
     color: var(--btn-color);
 }
 
+.stack-container::-webkit-scrollbar {
+    width: 2px;
+}
+
+.stack-container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.stack-container::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+}
+
 .stack-container {
     display: flex;
     flex-direction: row;

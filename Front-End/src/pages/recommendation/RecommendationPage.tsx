@@ -45,7 +45,7 @@ separateText(text);
 
 const Recommendation = () => {
     return (
-        <div>
+        <div style={{ padding: 5 }}>
             <p>{recommendedText}</p>
         </div>
     );
