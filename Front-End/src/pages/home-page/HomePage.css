@@ -78,7 +78,6 @@ hr {
 
 .stack-container {
     display: flex;
-    flex: 1;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;

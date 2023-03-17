@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Recommendation.css";
 
 // handle data from backend
 
 const RecommendationPage = () => {
+    const [screenHeight, setScreenHeight] = useState<number>(
+        window.innerHeight
+    );
     return (
-        <div className="container">
-            <h3>Recommendation Page</h3>
-            <br />
-            <hr />
+        <div className="container" style={{ height: screenHeight / 1.5 }}>
             <div className="recomendation">
                 <div className="recom-container">
-                    <p>We recommend the following</p>
+                    <h1>We recommend the following</h1>
 
                     <Recommendation />
                 </div>

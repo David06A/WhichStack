@@ -51,7 +51,7 @@ const QuestionPage = ({ nextPage }: any) => {
         <div className="container">
             <div
                 className="question-container"
-                style={{ maxHeight: screenHeight / 1.5 }}>
+                style={{ height: screenHeight / 1.5 }}>
                 <QuestionCard
                     question={questionRef}
                     onAnswerClick={handleAnswerClick}
@@ -77,7 +77,7 @@ const QuestionPage = ({ nextPage }: any) => {
 const QuestionCard = ({ question, onAnswerClick, selectedAnswers }: any) => {
     return (
         <div className="question-card">
-            <h2>{question.title}</h2>
+            <h1>{question.title}</h1>
             <div className="qustionTags">
                 {question.tags.map((tag: string) => (
                     <span className="tags">{tag}</span>
