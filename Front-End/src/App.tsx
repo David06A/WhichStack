@@ -4,7 +4,7 @@ import "./App.css";
 import { ThemeToggleButton } from "./components/ThemeToggleButton";
 import { HomePage } from "./pages/home-page/HomePage";
 import QuestionPage from "./pages/questions-page/QuestionPage";
-import RecommendationPage from "./pages/recommendation/RecommendationPage"
+import RecommendationPage from "./pages/recommendation/RecommendationPage";
 function App() {
     const [isLightMode, setIsLightMode] = useState(false);
     const [currentPage, setCurrentPage] = useState("home");
