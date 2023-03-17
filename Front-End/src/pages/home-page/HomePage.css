@@ -3,7 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 75%;
+    width: 80%;
+    min-height: 70%;
     margin: auto;
     padding: 15px;
     border-radius: 30px;
@@ -35,7 +36,7 @@ hr {
     width: 130px;
     min-height: 180px;
     padding: 10px;
-    margin: 10px;
+    margin: 5px;
     border-radius: 20px;
     background-color: var(--background-secondary);
     border: 3px solid var(--border);
@@ -77,13 +78,14 @@ hr {
 
 .stack-container {
     display: flex;
+    flex: 1;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     margin-top: -30px;
     width: 100%;
-    height: 100%;
+    overflow-y: scroll;
     padding: 20px;
 }
 
