@@ -5,7 +5,7 @@ import asyncio
 import aiohttp
 import motor.motor_asyncio as motor 
 
-from database import Client
+#from database import Client
 from response import Response as ai
 
 
@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO)
 
 class Handler:
     def __init__(self):
-        self.database = Client() 
+        #self.database = Client() 
         self.valid_format = {
             "purpose": {
                 "0": "I want to learn a new technology", 
@@ -46,7 +46,7 @@ class Handler:
             "stacks": {
                 "0": "I have no preference", 
                 "1": "I want to use React",
-                "2": "I want to sue Angular",
+                "2": "I want to use Angular",
                 "3": "I want to use Vue",
                 "4": "I want to use Node",
                 "5": "I want to use GraphQL",
@@ -57,7 +57,7 @@ class Handler:
             "languages": {
                 "0": "I have no preference", 
                 "1": "I want to use JavaScript",
-                "2": "I want to sue TypeScript",
+                "2": "I want to use TypeScript",
                 "3": "I want to use Python",
                 "4": "I want to use Java",
                 "5": "I want to use C#",
@@ -68,7 +68,7 @@ class Handler:
             "database": {
                 "0": "I have no preference", 
                 "1": "I want to use MongoDB",
-                "2": "I want to sue MySQL",
+                "2": "I want to use MySQL",
                 "3": "I want to use PostgreSQL",
                 "4": "I want to use DynamoDB",
                 "5": "I want to use Redis",
@@ -77,7 +77,7 @@ class Handler:
             "providers": {
                 "0": "I have no preference", 
                 "1": "I want to use AWS",
-                "2": "I want to sue GCP",
+                "2": "I want to use GCP",
                 "3": "I want to use Azure",
                 "4": "I want to use Digital Ocean",
                 "5": "I want to use Heroku",
@@ -85,6 +85,7 @@ class Handler:
         }
 
     async def retreive_response(self, ctx: dict):
+        logging.info("Requesting response")
         ai_response = await ai().request(ctx)
 
         if not ai_response:
@@ -103,19 +104,18 @@ class Handler:
             "database": {},
             "providers": {}
         }
-        logging.info(ctx)
 
         for key in ctx:
             if key in self.valid_format and set(ctx[key]) <= set(self.valid_format[key]):
                 for x in ctx[key]:
                     formatted_ctx[key][x] = self.valid_format[key][x]
             else:
-                logging.info(True, key)
                 return False
 
-        logging.info(formatted_ctx)
         return formatted_ctx
 
+
+    '''
     async def get_stack_info(self, stack_type: int, stack_name: str):
         document, _ = await self.database.load_document(stack_type, stack_name)
 
@@ -139,3 +139,4 @@ class Handler:
                 }
             }
         )
+    '''
