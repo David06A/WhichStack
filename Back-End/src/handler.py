@@ -103,17 +103,14 @@ class Handler:
             "database": {},
             "providers": {}
         }
-        logging.info(ctx)
 
         for key in ctx:
             if key in self.valid_format and set(ctx[key]) <= set(self.valid_format[key]):
                 for x in ctx[key]:
                     formatted_ctx[key][x] = self.valid_format[key][x]
             else:
-                logging.info(True, key)
                 return False
 
-        logging.info(formatted_ctx)
         return formatted_ctx
 
     async def get_stack_info(self, stack_type: int, stack_name: str):
