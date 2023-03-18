@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PopularStacks, Stack } from "../../assets/PopularStacks";
 import "./HomePage.css";
 
@@ -8,6 +8,10 @@ type HomePageProps = {
 
 export const HomePage = ({ nextPage }: HomePageProps) => {
     const [stacks, setStacks] = useState<Stack[]>(PopularStacks);
+    const [screenHeight, setScreenHeight] = useState<number>(
+        window.innerHeight
+    );
+
     return (
         <div className="container">
             <h1>Find your perfect tech stack in 60 seconds...</h1>
@@ -15,7 +19,9 @@ export const HomePage = ({ nextPage }: HomePageProps) => {
             <br />
             <hr />
             <h3>Popular Tech Stacks</h3>
-            <div className="stack-container">
+            <div
+                className="stack-container"
+                style={{ height: screenHeight / 2 }}>
                 {stacks.map((stack) => (
                     <TechStackCard stack={stack} />
                 ))}
@@ -38,6 +44,7 @@ const GoButton = ({ onClick }: any) => {
 type TechStackCardProps = {
     stack: Stack;
 };
+
 const TechStackCard = ({ stack }: TechStackCardProps) => {
     return (
         <div className="techstack-card">
