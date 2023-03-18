@@ -46,7 +46,7 @@ class Handler:
             "stacks": {
                 "0": "I have no preference", 
                 "1": "I want to use React",
-                "2": "I want to sue Angular",
+                "2": "I want to use Angular",
                 "3": "I want to use Vue",
                 "4": "I want to use Node",
                 "5": "I want to use GraphQL",
@@ -57,7 +57,7 @@ class Handler:
             "languages": {
                 "0": "I have no preference", 
                 "1": "I want to use JavaScript",
-                "2": "I want to sue TypeScript",
+                "2": "I want to use TypeScript",
                 "3": "I want to use Python",
                 "4": "I want to use Java",
                 "5": "I want to use C#",
@@ -68,7 +68,7 @@ class Handler:
             "database": {
                 "0": "I have no preference", 
                 "1": "I want to use MongoDB",
-                "2": "I want to sue MySQL",
+                "2": "I want to use MySQL",
                 "3": "I want to use PostgreSQL",
                 "4": "I want to use DynamoDB",
                 "5": "I want to use Redis",
@@ -77,7 +77,7 @@ class Handler:
             "providers": {
                 "0": "I have no preference", 
                 "1": "I want to use AWS",
-                "2": "I want to sue GCP",
+                "2": "I want to use GCP",
                 "3": "I want to use Azure",
                 "4": "I want to use Digital Ocean",
                 "5": "I want to use Heroku",
