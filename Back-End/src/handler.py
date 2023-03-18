@@ -5,7 +5,7 @@ import asyncio
 import aiohttp
 import motor.motor_asyncio as motor 
 
-from database import Client
+#from database import Client
 from response import Response as ai
 
 
@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO)
 
 class Handler:
     def __init__(self):
-        self.database = Client() 
+        #self.database = Client() 
         self.valid_format = {
             "purpose": {
                 "0": "I want to learn a new technology", 
@@ -85,6 +85,7 @@ class Handler:
         }
 
     async def retreive_response(self, ctx: dict):
+        logging.info("Requesting response")
         ai_response = await ai().request(ctx)
 
         if not ai_response:
@@ -113,6 +114,8 @@ class Handler:
 
         return formatted_ctx
 
+
+    '''
     async def get_stack_info(self, stack_type: int, stack_name: str):
         document, _ = await self.database.load_document(stack_type, stack_name)
 
@@ -136,3 +139,4 @@ class Handler:
                 }
             }
         )
+    '''
