@@ -29,7 +29,7 @@ logging.basicConfig(level=logging.INFO)
 
 handler = Handler()
 
-@app.post("/stack/chooser")
+@app.get("/stack/chooser")
 @limiter.limit("10/hour")
 async def stack_chooser(request: Request, response: Response):
     try:
