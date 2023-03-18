@@ -30,7 +30,7 @@ logging.basicConfig(level=logging.INFO)
 handler = Handler()
 
 @app.post("/stack/chooser")
-@limiter.limit("2/minute")
+@limiter.limit("10/hour")
 async def stack_chooser(request: Request, response: Response):
     try:
         req = await request.json()
