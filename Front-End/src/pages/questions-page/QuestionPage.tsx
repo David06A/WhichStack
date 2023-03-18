@@ -19,37 +19,32 @@ type QuestionPageProps = {
     nextPage: Function;
 };
 
-const QuestionPage = ( { nextPage }: QuestionPageProps ) =>
-{
+const QuestionPage = ({ nextPage }: QuestionPageProps) => {
     // Will leave this for someone else, but set functions are not used, useEffect instead?
-    const [ questions, setQuestions ] = useState<Question[]>(
+    const [questions, setQuestions] = useState<Question[]>(
         ProjectCreationQuestions
     );
-    const [ screenHeight, setScreenHeight ] = useState<number>(
+    const [screenHeight, setScreenHeight] = useState<number>(
         window.innerHeight
     );
 
     const savedAnswers = [];
-    const [ currentQuestion, setCurrentQuestion ] = useState<number>( 0 );
-    const questionRef = questions.at( currentQuestion );
-    const [ selectedAnswers, setSelectedAnswers ] = useState<Answer[]>( [] );
+    const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+    const questionRef = questions.at(currentQuestion);
+    const [selectedAnswers, setSelectedAnswers] = useState<Answer[]>([]);
 
-    const handleAnswerClick = ( answer: Answer ) =>
-    {
-        if ( questionRef?.tags.includes( "multiple" ) )
-            setSelectedAnswers( [ ...selectedAnswers, answer ] );
-        else setSelectedAnswers( [ answer ] );
+    const handleAnswerClick = (answer: Answer) => {
+        if (questionRef?.tags.includes("multiple"))
+            setSelectedAnswers([...selectedAnswers, answer]);
+        else setSelectedAnswers([answer]);
     };
-    const handleNextClick = () =>
-    {
-        savedAnswers.push( selectedAnswers );
-        setSelectedAnswers( [] );
-        if ( currentQuestion < questions.length - 1 )
-        {
-            setCurrentQuestion( currentQuestion + 1 );
-        } else
-        {
-            nextPage( "recommendation" ); //savedAnswers);
+    const handleNextClick = () => {
+        savedAnswers.push(selectedAnswers);
+        setSelectedAnswers([]);
+        if (currentQuestion < questions.length - 1) {
+            setCurrentQuestion(currentQuestion + 1);
+        } else {
+            nextPage("recommendation"); //savedAnswers);
         }
     };
 
@@ -57,22 +52,22 @@ const QuestionPage = ( { nextPage }: QuestionPageProps ) =>
         <div className="container">
             <div
                 className="question-container"
-                style={ { height: screenHeight / 1.5 } }>
+                style={{ height: screenHeight / 1.5 }}>
                 <QuestionCard
-                    question={ questionRef }
-                    onAnswerClick={ handleAnswerClick }
-                    selectedAnswers={ selectedAnswers }
+                    question={questionRef}
+                    onAnswerClick={handleAnswerClick}
+                    selectedAnswers={selectedAnswers}
                 />
             </div>
             <div className="question-footer">
                 <h3>
-                    Question { currentQuestion + 1 }/{ questions.length }
+                    Question {currentQuestion + 1}/{questions.length}
                 </h3>
                 <button
                     className="button-81"
-                    disabled={ selectedAnswers.length === 0 }
+                    disabled={selectedAnswers.length === 0}
                     role="button"
-                    onClick={ handleNextClick }>
+                    onClick={handleNextClick}>
                     Next
                 </button>
             </div>
@@ -80,26 +75,26 @@ const QuestionPage = ( { nextPage }: QuestionPageProps ) =>
     );
 };
 
-const QuestionCard = ( { question, onAnswerClick, selectedAnswers }: any ) =>
-{
+const QuestionCard = ({ question, onAnswerClick, selectedAnswers }: any) => {
     return (
         <div className="question-card">
-            <h1>{ question.title }</h1>
+            <h1>{question.title}</h1>
             <div className="qustionTags">
-                { question.tags.map( ( tag: string ) => (
-                    <span className="tags">{ tag }</span>
-                ) ) }
+                {question.tags.map((tag: string) => (
+                    <span className="tags">{tag}</span>
+                ))}
             </div>
             <br />
             <div className="answers">
-                { question.answers.map( ( answer: Answer ) => (
+                {question.answers.map((answer: Answer) => (
                     <div
-                        onClick={ () => onAnswerClick( answer ) }
-                        className={ `answer ${ selectedAnswers.includes( answer ) && "selected"
-                            }` }>
-                        <h4>{ answer.description }</h4>
+                        onClick={() => onAnswerClick(answer)}
+                        className={`answer ${
+                            selectedAnswers.includes(answer) && "selected"
+                        }`}>
+                        <h4>{answer.description}</h4>
                     </div>
-                ) ) }
+                ))}
             </div>
         </div>
     );

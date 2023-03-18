@@ -5,7 +5,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 1,
         title: "What is the purpose of your project?",
         description: "What is the purpose of your project?",
-        tags: [ "purpose", "project", "goal" ],
+        tags: ["purpose", "project", "goal"],
         answers: [
             {
                 id: 1,
@@ -49,7 +49,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 2,
         title: "What is your experience level?",
         description: "What is your experience level?",
-        tags: [ "experience", "level", "skill" ],
+        tags: ["experience", "level", "skill"],
         answers: [
             {
                 id: 1,
@@ -69,7 +69,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 3,
         title: "What is your budget?",
         description: "What is your budget?",
-        tags: [ "budget", "cost", "money" ],
+        tags: ["budget", "cost", "money"],
         answers: [
             {
                 id: 1,
@@ -93,7 +93,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 4,
         title: "What is your timeline?",
         description: "What is your timeline?",
-        tags: [ "timeline", "time", "deadline" ],
+        tags: ["timeline", "time", "deadline"],
         answers: [
             {
                 id: 1,
@@ -118,7 +118,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 5,
         title: "What is your preferred technology stacks?",
         description: "What is your preferred technology stacks?",
-        tags: [ "technology", "stack", "tech", "multiple" ],
+        tags: ["technology", "stack", "tech", "multiple"],
         answers: [
             {
                 id: 1,
@@ -163,7 +163,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 6,
         title: "What is your preferred programming languages?",
         description: "What is your preferred programming languages?",
-        tags: [ "language", "programming", "code", "multiple" ],
+        tags: ["language", "programming", "code", "multiple"],
         answers: [
             {
                 id: 1,
@@ -208,7 +208,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 7,
         title: "What is your preferred databases?",
         description: "What is your preferred databases?",
-        tags: [ "database", "db", "sql", "multiple" ],
+        tags: ["database", "db", "sql", "multiple"],
         answers: [
             {
                 id: 1,
@@ -245,7 +245,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 8,
         title: "What is your preferred hosting providers?",
         description: "What is your preferred hosting providers?",
-        tags: [ "hosting", "provider", "cloud", "multiple" ],
+        tags: ["hosting", "provider", "cloud", "multiple"],
         answers: [
             {
                 id: 1,

@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import "./Recommendation.css";
 
 // handle data from backend
-const RecommendationPage = () =>
-{
-    const [ screenHeight, setScreenHeight ] = useState<number>(
+const RecommendationPage = () => {
+    const [screenHeight, setScreenHeight] = useState<number>(
         window.innerHeight
     );
 
     return (
-        <div className="container" style={ { height: screenHeight / 1.5 } }>
+        <div className="container" style={{ height: screenHeight / 1.5 }}>
             <div className="recomendation">
                 <div className="recom-container">
                     <h1>We recommend the following</h1>
@@ -34,37 +33,34 @@ var recommendedText = "";
 var linkText = "";
 
 // this regex function will split the text when it sees References:
-function separateText ( text: any )
-{
+function separateText(text: any) {
     const regex = /^(.*?)(?=\bReferences:)/is;
-    const [ , recommended ] = regex.exec( text );
-    const links = text.replace( recommended, "" );
+    const [, recommended] = regex.exec(text);
+    const links = text.replace(recommended, "");
     recommendedText = recommended;
     linkText = links;
-    console.log( recommendedText, linkText );
+    console.log(recommendedText, linkText);
 }
 
-separateText( text );
+separateText(text);
 
-const Recommendation = () =>
-{
+const Recommendation = () => {
     return (
-        <div style={ { padding: 5 } }>
-            <p>{ recommendedText }</p>
+        <div style={{ padding: 5 }}>
+            <p>{recommendedText}</p>
         </div>
     );
 };
 
-const Links = () =>
-{
+const Links = () => {
     return (
         <div>
             <div className="links">
-                { linkText.split( "-" ).map( ( line, index ) => (
-                    <p className="recommendation-text" key={ index }>
-                        { line }
+                {linkText.split("-").map((line, index) => (
+                    <p className="recommendation-text" key={index}>
+                        {line}
                     </p>
-                ) ) }
+                ))}
             </div>
         </div>
     );
