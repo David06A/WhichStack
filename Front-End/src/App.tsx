@@ -37,23 +37,14 @@ function App() {
                 </div>
             </div>
             <div className="card">
-                <div
-                    className={`page-container ${
-                        currentPage !== "home" && "hidden"
-                    }`}>
-                    <HomePage nextPage={updatePage} />
-                </div>
-                <div
-                    className={`page-container ${
-                        currentPage !== "question" && "hidden"
-                    }`}>
-                    <QuestionPage nextPage={updatePage} />
-                </div>
-                <div
-                    className={`page-container ${
-                        currentPage !== "recommendation" && "hidden"
-                    }`}>
-                    <RecommendationPage />
+                <div className="page-container">
+                    {currentPage === "home" && (
+                        <HomePage nextPage={updatePage} />
+                    )}
+                    {currentPage === "question" && (
+                        <QuestionPage nextPage={updatePage} />
+                    )}
+                    {currentPage === "recommendation" && <RecommendationPage />}
                 </div>
             </div>
         </div>

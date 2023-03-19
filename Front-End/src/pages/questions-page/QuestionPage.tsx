@@ -80,14 +80,17 @@ const QuestionCard = ({ question, onAnswerClick, selectedAnswers }: any) => {
         <div className="question-card">
             <h1>{question.title}</h1>
             <div className="qustionTags">
-                {question.tags.map((tag: string) => (
-                    <span className="tags">{tag}</span>
+                {question.tags.map((tag: string, i: number) => (
+                    <span key={i} className="tags">
+                        {tag}
+                    </span>
                 ))}
             </div>
             <br />
             <div className="answers">
-                {question.answers.map((answer: Answer) => (
+                {question.answers.map((answer: Answer, i: number) => (
                     <div
+                        key={i}
                         onClick={() => onAnswerClick(answer)}
                         className={`answer ${
                             selectedAnswers.includes(answer) && "selected"
