@@ -2,7 +2,7 @@ import os
 
 import openai
 
-openai.api_key = os.getenv("OPENAI_KEY")
+openai.api_key = "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"
 
 class Response():    
     async def request(self, ctx):   
