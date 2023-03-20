@@ -34,9 +34,9 @@ Upon completing your changes **that are tested** please raise a pull request tha
 Below are the list of contributors to the WhichStack? project along with their general contributions to the project and their Discord Ids. Thank you to all those involved, you have made the event (so far) an incredible experience that we will continue to provide. If I have missed you off the contribution list please create a pull request with the change and ping me in the server
 
 - David (Davidd#0002) (Event & Server Host, Idea & Code Contributor)
-- Matt (Matt R#3375) (Initial Idea, Idea & Code Contributor)
+- Matt (Matt R#3375) (Idea Contributor)
 - Shivster (Shivster#6969) (Idea & Code Contributor)
-- Berry (Berry#6627) (Idea & Code Contributor)
+- Berry (Berry#6627) (Idea Contributor)
 - Swyft (SwyftPain#2973) (Idea & Code Contributor) 
 - Helpbot (helpbot#3546) (Idea Contributor)
 
