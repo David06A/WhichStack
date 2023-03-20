@@ -38,6 +38,7 @@ Below are the list of contributors to the WhichStack? project along with their g
 - Shivster (Shivster#6969) (Idea & Code Contributor)
 - Berry (Berry#6627) (Idea Contributor)
 - Swyft (SwyftPain#2973) (Idea & Code Contributor) 
+- Dean (DeanDraco#4111) (Code Contributor)  
 - Helpbot (helpbot#3546) (Idea Contributor)
 
 ---
