@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { ThemeToggleButton } from "./components/ThemeToggleButton";
@@ -9,7 +9,11 @@ import RecommendationPage from "./pages/recommendation/RecommendationPage";
 function App() {
     const [isLightMode, setIsLightMode] = useState(false);
     const [currentPage, setCurrentPage] = useState("home");
-
+    const savedAnswers: any = useRef({});
+    const addSavedAnswers = (tag: string, answers: any) => {
+        savedAnswers.current[tag] = answers;
+        console.log(savedAnswers.current);
+    };
     const updatePage = (page: string) => {
         setCurrentPage(page);
     };
@@ -37,23 +41,21 @@ function App() {
                 </div>
             </div>
             <div className="card">
-                <div
-                    className={`page-container ${
-                        currentPage !== "home" && "hidden"
-                    }`}>
-                    <HomePage nextPage={updatePage} />
-                </div>
-                <div
-                    className={`page-container ${
-                        currentPage !== "question" && "hidden"
-                    }`}>
-                    <QuestionPage nextPage={updatePage} />
-                </div>
-                <div
-                    className={`page-container ${
-                        currentPage !== "recommendation" && "hidden"
-                    }`}>
-                    <RecommendationPage />
+                <div className="page-container">
+                    {currentPage === "home" && (
+                        <HomePage nextPage={updatePage} />
+                    )}
+                    {currentPage === "question" && (
+                        <QuestionPage
+                            nextPage={updatePage}
+                            addSavedAnswers={addSavedAnswers}
+                        />
+                    )}
+                    {currentPage === "recommendation" && (
+                        <RecommendationPage
+                            savedAnswers={savedAnswers.current}
+                        />
+                    )}
                 </div>
             </div>
         </div>

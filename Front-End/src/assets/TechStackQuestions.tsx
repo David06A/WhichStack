@@ -118,7 +118,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 5,
         title: "What is your preferred technology stacks?",
         description: "What is your preferred technology stacks?",
-        tags: ["technology", "stack", "tech", "multiple"],
+        tags: ["stacks", "tech", "multiple"],
         answers: [
             {
                 id: 1,
@@ -163,7 +163,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 6,
         title: "What is your preferred programming languages?",
         description: "What is your preferred programming languages?",
-        tags: ["language", "programming", "code", "multiple"],
+        tags: ["languages", "programming", "code", "multiple"],
         answers: [
             {
                 id: 1,
@@ -245,7 +245,7 @@ export const ProjectCreationQuestions: Question[] = [
         id: 8,
         title: "What is your preferred hosting providers?",
         description: "What is your preferred hosting providers?",
-        tags: ["hosting", "provider", "cloud", "multiple"],
+        tags: ["providers", "cloud", "multiple"],
         answers: [
             {
                 id: 1,

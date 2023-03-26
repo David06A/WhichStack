@@ -22,8 +22,8 @@ export const HomePage = ({ nextPage }: HomePageProps) => {
             <div
                 className="stack-container"
                 style={{ height: screenHeight / 2 }}>
-                {stacks.map((stack) => (
-                    <TechStackCard stack={stack} />
+                {stacks.map((stack, i) => (
+                    <TechStackCard key={i} stack={stack} />
                 ))}
             </div>
         </div>
