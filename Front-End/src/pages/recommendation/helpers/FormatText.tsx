@@ -48,9 +48,9 @@ const Links = ({ links }: LinksProps) => {
         <div>
             <div className="links">
                 {links.map((link, index) => (
-                    <p className="recommendation-text" key={index}>
+                    <a className="recommendation-text" key={index}>
                         {link}
-                    </p>
+                    </a>
                 ))}
             </div>
         </div>

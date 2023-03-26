@@ -49,7 +49,7 @@ p {
     margin: 20px;
 }
 
-.recommendation-text:not(:first-child) {
+.recommendation-text:has(a) {
     border: 1px solid #ccc;
     padding: 5px;
     margin: 20px;

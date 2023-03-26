@@ -1,4 +1,4 @@
-export const payload = {
+export const examplePayload = {
     user_context: {
         purpose: ["2"],
         experience: ["1"],

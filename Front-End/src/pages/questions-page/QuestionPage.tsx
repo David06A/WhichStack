@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer, useRef, useState } from "react";
 import { ProjectCreationQuestions } from "../../assets/TechStackQuestions";
 import "./QuestionPage.css";
 
@@ -17,9 +17,10 @@ type Answer = {
 
 type QuestionPageProps = {
     nextPage: Function;
+    addSavedAnswers: Function;
 };
 
-const QuestionPage = ({ nextPage }: QuestionPageProps) => {
+const QuestionPage = ({ nextPage, addSavedAnswers }: QuestionPageProps) => {
     // Will leave this for someone else, but set functions are not used, useEffect instead?
     const [questions, setQuestions] = useState<Question[]>(
         ProjectCreationQuestions
@@ -28,7 +29,6 @@ const QuestionPage = ({ nextPage }: QuestionPageProps) => {
         window.innerHeight
     );
 
-    const savedAnswers = [];
     const [currentQuestion, setCurrentQuestion] = useState<number>(0);
     const questionRef = questions.at(currentQuestion);
     const [selectedAnswers, setSelectedAnswers] = useState<Answer[]>([]);
@@ -39,7 +39,9 @@ const QuestionPage = ({ nextPage }: QuestionPageProps) => {
         else setSelectedAnswers([answer]);
     };
     const handleNextClick = () => {
-        savedAnswers.push(selectedAnswers);
+        const answerIds = selectedAnswers.map((answer) => `${answer.id}`);
+        const tag = questionRef?.tags[0] ?? "other";
+        addSavedAnswers(tag, answerIds);
         setSelectedAnswers([]);
         if (currentQuestion < questions.length - 1) {
             setCurrentQuestion(currentQuestion + 1);

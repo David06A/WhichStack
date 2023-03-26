@@ -1,16 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import { payload } from "../../assets/ExamplePayload";
+import { examplePayload } from "../../assets/ExamplePayload";
 import { formatText, Links, separateText } from "./helpers/FormatText";
 import "./Recommendation.css";
 
-const RecommendationPage = () => {
+type RecommendationPageProps = {
+    savedAnswers: Object;
+};
+
+const RecommendationPage = ({ savedAnswers }: RecommendationPageProps) => {
     const [screenHeight, setScreenHeight] = useState<number>(
         window.innerHeight
     );
 
     const isRequesting = useRef<boolean>(false);
-    const [chatGPT, setChatGPT] = useState<string>("");
-
+    const [chatGPT, setChatGPT] = useState<undefined | string>(undefined);
+    const payload = { user_context: { ...savedAnswers } };
+    console.log(payload, examplePayload);
     useEffect(() => {
         if (isRequesting.current) return;
         isRequesting.current = true;
@@ -23,6 +28,7 @@ const RecommendationPage = () => {
         })
             .then((response) => response.json())
             .then((data) => {
+                console.log(data);
                 setChatGPT(data.response);
             })
             .finally(() => {
@@ -30,7 +36,9 @@ const RecommendationPage = () => {
             });
     }, []);
 
-    if (chatGPT === "") return <div className="spinner"></div>;
+    console.log(chatGPT);
+    if (chatGPT === undefined || isRequesting.current)
+        return <div className="spinner"></div>;
 
     const recommendedText = separateText(chatGPT);
 
@@ -42,6 +50,7 @@ const RecommendationPage = () => {
                     <h3>
                         Find affiliate Links for the recommended stack below
                     </h3>
+                    <br />
                     <Links links={recommendedText.links ?? []} />
                 </div>
             </div>

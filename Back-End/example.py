@@ -34,7 +34,7 @@ async def example():
             }
         }
 
-        async with session.get('http://127.0.0.1:42069/stack/chooser', json = payload) as response:
+        async with session.post('http://127.0.0.1:42069/stack/chooser', json = payload) as response:
             print(await response.json())
 
 loop = asyncio.get_event_loop()
