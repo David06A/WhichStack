@@ -3,20 +3,19 @@ import logging
 import asyncio
 
 import aiohttp
-import motor.motor_asyncio as motor 
+import motor.motor_asyncio as motor
 
-#from database import Client
 from response import Response as ai
 
 
 logging.basicConfig(level=logging.INFO)
 
+
 class Handler:
     def __init__(self):
-        #self.database = Client() 
         self.valid_format = {
             "purpose": {
-                "0": "I want to learn a new technology", 
+                "0": "I want to learn a new technology",
                 "1": "I want to build a portfolio piece",
                 "2": "I want to build a product",
                 "3": "I want to build a website",
@@ -27,24 +26,24 @@ class Handler:
                 "8": "I want to build a web scraper"
             },
             "experience": {
-                "0": "I am a begineer", 
+                "0": "I am a begineer",
                 "1": "I am an intermediate developer",
                 "2": "I am an advanced developer"
             },
             "budget": {
-                "0": "I have no budget/no funds", 
+                "0": "I have no budget/no funds",
                 "1": "I have a small budget",
                 "2": "I have a medium budget",
                 "3": "I have a large budget"
             },
             "timeline": {
-                "0": "I have no timeframe", 
-                "1": "I have a short timeframe", 
+                "0": "I have no timeframe",
+                "1": "I have a short timeframe",
                 "2": "I have a medium timeframe",
                 "3": "I have a long timeframe"
             },
             "stacks": {
-                "0": "I have no preference", 
+                "0": "I have no preference",
                 "1": "I want to use React",
                 "2": "I want to use Angular",
                 "3": "I want to use Vue",
@@ -55,7 +54,7 @@ class Handler:
                 "8": "I want to use Docker"
             },
             "languages": {
-                "0": "I have no preference", 
+                "0": "I have no preference",
                 "1": "I want to use JavaScript",
                 "2": "I want to use TypeScript",
                 "3": "I want to use Python",
@@ -66,7 +65,7 @@ class Handler:
                 "8": "I want to use Rust"
             },
             "database": {
-                "0": "I have no preference", 
+                "0": "I have no preference",
                 "1": "I want to use MongoDB",
                 "2": "I want to use MySQL",
                 "3": "I want to use PostgreSQL",
@@ -75,7 +74,7 @@ class Handler:
                 "6": "I want to use Cassandra"
             },
             "providers": {
-                "0": "I have no preference", 
+                "0": "I have no preference",
                 "1": "I want to use AWS",
                 "2": "I want to use GCP",
                 "3": "I want to use Azure",
@@ -113,30 +112,3 @@ class Handler:
                 return False
 
         return formatted_ctx
-
-
-    '''
-    async def get_stack_info(self, stack_type: int, stack_name: str):
-        document, _ = await self.database.load_document(stack_type, stack_name)
-
-        stack_info = {
-            "stack_name": document["stack_name"],
-            "short_description": document["short_description"],
-            "long_description": document["long_description"],
-            "stack_count": document["stack_count"]
-        }
-
-        return stack_info
-
-    async def inc_stack_count(self, stack_type: int, stack_name: str):
-        document, collection = await self.database.load_document(stack_type, stack_name)
-
-        await collection.update_one(
-            {"stack_name": stack_name},
-            {"$inc":
-                {
-                    "stack_count": 1
-                }
-            }
-        )
-    '''
